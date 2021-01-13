@@ -13,6 +13,7 @@ class Solution:
                     continue
                 board[row][col] = "Q"
                 backtrack(board, row + 1)
+                # 撤銷選擇是為了回復棋盤
                 board[row][col] = "."
         backtrack(board, 0)
         return all_choices
