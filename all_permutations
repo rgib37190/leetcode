@@ -1,0 +1,18 @@
+import copy
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        total_track = []
+        def traverse(choices, track):
+            if len(track) == len(choices):
+                # 必須使用深拷貝，因為track遞歸回根節點的時候，就會變成空
+                # total_track.append(track)
+                total_track.append(copy.deepcopy(track))
+                return
+            for i in range(len(choices)):
+                if choices[i] in track:
+                    continue
+                track.append(choices[i])
+                traverse(choices, track)
+                track.pop()
+        traverse(nums, [])
+        return total_track
